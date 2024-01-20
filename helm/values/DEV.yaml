@@ -1,0 +1,10 @@
+environment: DEV
+resource:
+  cpu:
+    requests: 0.1
+    limit: 0.1
+  memory:
+    requests: 250Mi
+    limit: 250Mi
+configMap:
+  properties: files/dev/application.properties

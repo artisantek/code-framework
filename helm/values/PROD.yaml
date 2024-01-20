@@ -1,0 +1,10 @@
+environment: PROD
+resource:
+  cpu:
+    requests: 0.1
+    limit: 0.5
+  memory:
+    requests: 250Mi
+    limit: 500Mi
+configMap:
+  properties: files/prod/application.properties

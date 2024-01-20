@@ -1,0 +1,10 @@
+environment: UAT
+resource:
+  cpu:
+    requests: 0.1
+    limit: 0.5
+  memory:
+    requests: 250Mi
+    limit: 500Mi
+configMap:
+  properties: files/uat/application.properties

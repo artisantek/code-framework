@@ -1,0 +1,19 @@
+{{- if .Values.service.ingress.enabled }}
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ .Values.deployment.name }}-ingress
+  {{- include "mychart.labels" . | nindent 4 }}
+spec:
+  ingressClassName: nginx
+  rules:
+  - http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: {{ .Values.deployment.name }}-svc
+            port: 
+              number: {{ .Values.service.clusterIPPort }}
+{{- end }}
