@@ -6,5 +6,5 @@ RUN mvn clean install
 FROM openjdk:11-slim
 WORKDIR /app
 COPY scripts/startService.sh .
-COPY --from=build /app/target/knote*.jar app.jar
+COPY --from=build /app/target/<REPO_NAME>*.jar app.jar
 CMD ["sh", "-c", "/app/startService.sh"]

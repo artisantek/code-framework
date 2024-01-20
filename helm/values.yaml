@@ -1,6 +1,6 @@
 environment: DEV
 deployment:
-  name: note-project
+  name: <REPO_NAME>
   replicaCount: 1
 image:
   account: 227219889473.dkr.ecr.ap-southeast-1.amazonaws.com
@@ -20,6 +20,4 @@ resource:
     limit: 500Mi
 configMap:
   properties: files/dev/application.properties
-secret:
-  name: awscred
 
