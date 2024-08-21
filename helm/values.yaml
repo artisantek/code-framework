@@ -3,14 +3,15 @@ deployment:
   name: <REPO_NAME>
   replicaCount: 1
 image:
-  account: 227219889473.dkr.ecr.ap-southeast-1.amazonaws.com
-  tag: 1
+  account: nginx
+  tag: latest
   containerPort: 8080
 service:
   type: ClusterIP
   clusterIPPort: 8080
   ingress:
     enables: false
+    hostname: test.example.com
 resource:
   cpu:
     requests: 0.1
@@ -20,4 +21,25 @@ resource:
     limit: 500Mi
 configMap:
   properties: files/dev/application.properties
+probes:
+  liveness:
+    enabled: true
+    httpGet:
+      path: /healthz
+      port: http
+    initialDelaySeconds: 60
+    periodSeconds: 10
+  readiness:
+    enabled: true
+    httpGet:
+      path: /ready
+      port: http
+    periodSeconds: 10
+  startup:
+    enabled: false
+    httpGet:
+      path: /startup
+      port: http
+    failureThreshold: 30
+    periodSeconds: 10
 
